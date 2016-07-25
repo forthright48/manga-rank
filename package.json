@@ -1,0 +1,21 @@
+{
+  "name": "manga-rank",
+  "version": "0.0.0",
+  "description": "A website to rank mangas - sample project built using cassandra",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "manga",
+    "cassandra"
+  ],
+  "author": "Mohammad Samiul Islam",
+  "license": "MIT",
+  "dependencies": {
+    "@forthright48/simplecss": "^1.1.1",
+    "express": "^4.14.0",
+    "express-cassandra": "^1.0.3",
+    "pug": "^2.0.0-beta4"
+  }
+}
