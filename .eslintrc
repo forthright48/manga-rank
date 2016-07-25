@@ -58,7 +58,6 @@
     "no-nested-ternary": 2,
     "no-unneeded-ternary": 2,
     "brace-style": 2,
-    "indent": ["error", 2],
     "space-before-blocks": 2,
     "keyword-spacing": 2,
     "space-infix-ops": 2,
@@ -72,7 +71,6 @@
     "comma-style": 2,
     "semi": 2,
     "radix": 2,
-    "camelcase": 2,
     "new-cap": [2, {'capIsNewExceptions': [express.Router]} ],
     "no-underscore-dangle": [2, { "allow": ['_id', '__get__'] }]
   }
