@@ -1,0 +1,41 @@
+extends layout.pug
+
+block content
+  form.tower.u-flex
+    .any.items
+      h1.u-text-center Insert Form
+      .row
+        .six.items
+          label(for='name') Name:
+          input.u-full-width(id='name', type='text')
+        .six.items
+          label(for='author') Author:
+          input.u-full-width(id='author', type='text')
+      .row
+        .twelve.items
+          label(for='tags') Tags:
+          input.u-full-width(id='tags', type='text', placeholder='Enter comma separated list')
+      .row
+        .twelve.items
+          label(for='photoURL') Photo URL:
+          input.u-full-width(id='photoURL', type='url')
+      .row
+        .six.items
+          label(for='startingDate')  Starting Date:
+          input.u-full-width(id='startingDate', type='date')
+        .six.items
+          label(for='completed') Completed:
+          label.u-inline
+            input.inlin(type='radio', name='completed', value=1)
+            span Yes
+          label.u-inline
+            input(type='radio', name='completed', value=0)
+            span No
+      .row
+        .twelve.items
+          label Description:
+          textarea.u-full-width(name='description')
+
+      .row
+        .twelve.items.u-text-center
+          input(type='submit', value='Submit')
