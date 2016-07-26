@@ -1,28 +1,28 @@
 extends layout.pug
 
 block content
-  form.tower.u-flex
+  form.tower.u-flex(action='/insert',method='post')
     .any.items
       h3.u-text-center Insert Form
       .row
         .six.items
           label(for='name') Name:
-          input.u-full-width(id='name', type='text')
+          input.u-full-width(id='name', name='name' type='text')
         .six.items
           label(for='author') Author:
-          input.u-full-width(id='author', type='text')
+          input.u-full-width(id='author', name='author', type='text')
       .row
         .twelve.items
           label(for='tags') Tags:
-          input.u-full-width(id='tags', type='text', placeholder='Enter comma separated list')
+          input.u-full-width(id='tags', type='text', name='tags' placeholder='Enter comma separated list')
       .row
         .twelve.items
           label(for='photoURL') Photo URL:
-          input.u-full-width(id='photoURL', type='url')
+          input.u-full-width(id='photoURL', name='photoURL' type='url')
       .row
         .three.items
           label(for='startingDate')  Starting Date:
-          input.u-full-width(id='startingDate', type='date')
+          input.u-full-width(id='startingDate', name='startingDate' type='date')
         .three.items
           label(for='completed') Completed:
           label.u-inline
@@ -33,10 +33,10 @@ block content
             span No
         .three.items
           label(for='rank') Rank:
-          input(id='rank',type='number')
+          input(id='rank',type='number', name='rank')
         .three.items
           label(for='rating') Rating:
-          input(id='rating',type='number')
+          input(id='rating',type='number', name='rating')
       .row
         .twelve.items
           label Description:

@@ -53,6 +53,7 @@ app.set('views', `${__dirname}/views`);
 
 app.get('/', home);
 app.get('/insert', getInsert);
+app.post('/insert', postInsert);
 
 
 if (require.main === module) {
@@ -75,4 +76,8 @@ function home(req, res) {
 
 function getInsert(req, res) {
   res.render('insert');
+}
+
+function postInsert(req, res) {
+  console.log(req.body);
 }
