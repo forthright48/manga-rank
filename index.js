@@ -37,7 +37,7 @@ models.setDirectory(`${__dirname}/models`).bind({
         class: 'SimpleStrategy',
         replication_factor: 1
       },
-      dropTableOnSchemaChange: false, //recommended to keep it false in production, use true for development convenience.
+      dropTableOnSchemaChange: true, //recommended to keep it false in production, use true for development convenience.
       createKeyspace: true
     }
   },
