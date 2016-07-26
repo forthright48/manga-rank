@@ -20,17 +20,23 @@ block content
           label(for='photoURL') Photo URL:
           input.u-full-width(id='photoURL', type='url')
       .row
-        .six.items
+        .three.items
           label(for='startingDate')  Starting Date:
           input.u-full-width(id='startingDate', type='date')
-        .six.items
+        .three.items
           label(for='completed') Completed:
           label.u-inline
-            input.inlin(type='radio', name='completed', value=1)
+            input(type='radio', name='completed', value=1)
             span Yes
           label.u-inline
             input(type='radio', name='completed', value=0)
             span No
+        .three.items
+          label(for='rank') Rank:
+          input(id='rank',type='number')
+        .three.items
+          label(for='rating') Rating:
+          input(id='rating',type='number')
       .row
         .twelve.items
           label Description:
