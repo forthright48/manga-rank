@@ -70,8 +70,14 @@ if (require.main === module) {
 /*******************************************************************************
 Implementation
 *******************************************************************************/
-function home(req, res) {
-  res.render('home');
+function home(req, res, next) {
+  models.instance.Manga.find({}, function(err, all) {
+    if (err) next(err);
+    console.log(all);
+    res.render('home', {
+      data: all
+    });
+  });
 }
 
 function getInsert(req, res) {

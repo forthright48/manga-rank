@@ -3,3 +3,21 @@ extends layout
 block content
   .row.u-flex.u-flex-center
     .any.items.u-text-center
+      table.u-full-width.u-text-center(align='center')
+        thead
+          th Rank
+          th Name
+          th Author
+          th Rating
+          th Description
+          th Delete
+        tbody
+          each row in data
+            tr
+              td= row.rank
+              td= row.name
+              td= row.author
+              td= row.rating
+              td= row.description
+              td
+                a.button(href='/delete/'+row.id) Delete
