@@ -78,6 +78,22 @@ function getInsert(req, res) {
   res.render('insert');
 }
 
-function postInsert(req, res) {
+function postInsert(req, res, next) {
   console.log(req.body);
+  const newRow = new models.instance.Manga({
+    name: req.body.name,
+    author: req.body.author,
+    tags: req.body.tags.split(','),
+    photoURL: req.body.photoURL,
+    startingDate: models.datatypes.LocalDate.fromString(req.body.startingDate),
+    completed: Boolean(req.body.completed),
+    rank: parseFloat(req.body.rank),
+    rating: parseFloat(req.body.rating),
+    description: req.body.description
+  });
+
+  newRow.save(function(err) {
+    if (err) return next(err);
+    else return res.send('ok');
+  });
 }
