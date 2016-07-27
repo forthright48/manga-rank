@@ -33,6 +33,8 @@ models.setDirectory(`${__dirname}/../models`).bind({
 
 ///Session Store
 function addSession(app) {
+
+  ///Options for cassandra-store
   const options = {
     table: 'sessions',
     client: null,
