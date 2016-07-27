@@ -1,0 +1,123 @@
+extends layout
+
+block content
+  p Navbar in SimpleCSS is simple. We can create a navbar by simply writing an unordered list.
+
+
+  h2 Simple Nabvar
+
+  p Normally, creating an unordered list looks like this.
+  -
+    var x = `
+      <ul>
+        <li><a href="#">A</a></li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a></li>
+      </ul>
+    `
+
+  pre= x
+
+  p The above HTML will render into following:
+
+  div
+    <ul>
+      <li><a href="#">A</a></li>
+      <li><a href="#">B</a></li>
+      <li><a href="#">C</a></li>
+    </ul>
+
+  p We can convert it into a simple navbar by adding 'nav' class to the root #{'<ul>'} tag.
+
+  -
+    var x = `
+      <ul class="nav">
+        <li><a href="#">Apple</a></li>
+        <li><a href="#">Ball</a></li>
+        <li><a href="#">Cat</a></li>
+      </ul>
+    `
+
+  pre= x
+
+  p The above HTML will render into following:
+
+  div
+    <ul class="nav">
+      <li><a href="#">Apple</a></li>
+      <li><a href="#">Ball</a></li>
+      <li><a href="#">Cat</a></li>
+    </ul>
+
+  p Adding class such as 'u-text-center' or 'u-text-right' to root ul tag will arrange the navbar accordingly.
+
+  h2 Nabvar with Dropdown
+
+  p If we want we can mix dropdown menus with navbars. For that, we simply write a two level deep nested unordered list ( SimpleCSS doesn't support more than that ).
+
+  p Normally, creating a two-level deep nested unordered list looks like this.
+  -
+    var x = `
+      <ul>
+        <li><a href="#">A</a></li>
+        <li>
+          <a href="#">B</a>
+          <ul>
+            <li><a href="#">1</li>
+            <li><a href="#">2</li>
+          </ul>
+        </li>
+        <li><a href="#">C</a></li>
+      </ul>
+    `
+
+  pre= x
+
+  p The above HTML will render into following:
+
+  div
+    <ul>
+      <li><a href="#">A</a></li>
+      <li>
+        <a href="#">B</a>
+        <ul>
+          <li><a href="#">1</li>
+          <li><a href="#">2</li>
+        </ul>
+      </li>
+      <li><a href="#">C</a></li>
+    </ul>
+
+  p We can convert it into a simple navbar with dropdown effect by adding 'nav' class to the root #{'<ul>'} tag, 'dropdown' class to the li tag where we need the dropdown effect, 'dropbtn' class to the link inside the li tag which will trigger the submenu and 'dropdown-content' class to the ul tag nested inside the li tag.
+
+  -
+    var x = `
+      <ul class="nav">
+        <li><a href="#">Apple</a></li>
+        <li class="dropdown">
+          <a class="dropbtn" href="#">Ball</a>
+          <ul class="dropdown-content">
+            <li><a href="#">Red Ball</a></li>
+            <li><a href="#">White or Black Ball</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Cat</a></li>
+      </ul>
+    `
+
+  pre= x
+
+  p The above HTML will render into following:
+
+  div
+    <ul class="nav">
+      <li><a href="#">Apple</a></li>
+      <li class="dropdown">
+        <a class="dropbtn" href="#">Ball</a>
+        <ul class="dropdown-content">
+          <li><a href="#">Red Ball</a></li>
+          <li><a href="#">White or Black Ball</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Cat</a></li>
+    </ul>

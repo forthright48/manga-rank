@@ -3,7 +3,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const models = require('express-cassandra');
 
 const app = express();
 const server = require('http').createServer(app);
@@ -20,32 +19,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
 
-/*model configuration*/
-models.setDirectory(`${__dirname}/models`).bind({
-    clientOptions: {
-      contactPoints: ['127.0.0.1'],
-      protocolOptions: {
-        port: 9042
-      },
-      keyspace: 'manga',
-      queryOptions: {
-        consistency: models.consistencies.one
-      }
-    },
-    ormOptions: {
-      defaultReplicationStrategy: {
-        class: 'SimpleStrategy',
-        replication_factor: 1
-      },
-      dropTableOnSchemaChange: true, //recommended to keep it false in production, use true for development convenience.
-      createKeyspace: true
-    }
-  },
-  function(err) {
-    if (err) console.log(err.message);
-    else console.log(models.timeuuid());
-  }
-);
+require('./controllers/db.js').addSession(app); ///Add session and models
 
 /*Pug*/
 app.set('view engine', 'pug'); ///Support for handlebars rendering
