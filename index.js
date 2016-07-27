@@ -56,6 +56,7 @@ app.get('/insert', getInsert);
 app.post('/insert', postInsert);
 app.get('/delete/:id', getDelete);
 app.get('/edit/:id', getEdit);
+app.post('/edit/:id', postUpdate);
 
 
 if (require.main === module) {
@@ -75,7 +76,6 @@ Implementation
 function home(req, res, next) {
   models.instance.Manga.find({}, function(err, all) {
     if (err) next(err);
-    console.log(all);
     res.render('home', {
       data: all
     });
@@ -86,23 +86,26 @@ function getInsert(req, res) {
   res.render('insert');
 }
 
+function parseBodyToModel(obj, body) {
+  obj.name = body.name;
+  obj.author = body.author;
+  obj.tags = body.tags.split(',');
+  obj.photoURL = body.photoURL;
+  obj.startingDate = models.datatypes.LocalDate.fromString(body.startingDate);
+  obj.completed = body.completed === '1';
+  obj.rank = parseFloat(body.rank);
+  obj.rating = parseFloat(body.rating);
+  obj.description = body.description;
+}
+
 function postInsert(req, res, next) {
-  console.log(req.body);
-  const newRow = new models.instance.Manga({
-    name: req.body.name,
-    author: req.body.author,
-    tags: req.body.tags.split(','),
-    photoURL: req.body.photoURL,
-    startingDate: models.datatypes.LocalDate.fromString(req.body.startingDate),
-    completed: Boolean(req.body.completed),
-    rank: parseFloat(req.body.rank),
-    rating: parseFloat(req.body.rating),
-    description: req.body.description
-  });
+  let obj = {};
+  parseBodyToModel(obj, req.body);
+  const newRow = new models.instance.Manga(obj);
 
   newRow.save(function(err) {
     if (err) return next(err);
-    else return res.send('ok');
+    else return res.redirect('/');
   });
 }
 
@@ -110,7 +113,7 @@ function getDelete(req, res, next) {
   const id = models.datatypes.Uuid.fromString(req.params.id);
 
   models.instance.Manga.findOne({
-    id: id
+    id
   }, function(err, row) {
     if (err) return next(err);
     row.delete(function(err) {
@@ -123,10 +126,27 @@ function getDelete(req, res, next) {
 function getEdit(req, res, next) {
   const id = models.datatypes.Uuid.fromString(req.params.id);
 
-  models.instance.Manga(findOne(id: id), function(err, row) {
-    if (err) return next(err);
-    res.render('/edit', {
-      data: row
+  models.instance.Manga.findOne({
+      id
+    },
+    function(err, row) {
+      if (err) return next(err);
+      res.render('edit', {
+        data: row
+      });
     });
-  })
+}
+
+function postUpdate(req, res, next) {
+  const id = models.datatypes.Uuid.fromString(req.params.id);
+  models.instance.Manga.findOne({
+    id
+  }, function(err, row) {
+    if (err) return next(err);
+    parseBodyToModel(row, req.body);
+    row.save(function(err) {
+      if (err) return next(err);
+      return res.redirect('/');
+    });
+  });
 }

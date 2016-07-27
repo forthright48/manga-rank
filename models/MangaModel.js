@@ -12,7 +12,7 @@ module.exports = {
       type: 'list',
       typeDef: '<text>'
     },
-    url: 'text',
+    photoURL: 'text',
     startingDate: 'date',
     completed: 'boolean',
     rank: 'double',
@@ -28,7 +28,7 @@ module.exports = {
   },
   materialized_views: {
     author_search: {
-      select: ['name', 'author', 'tags', 'url', 'startingDate', 'completed', 'rank', 'rating', 'description'],
+      select: ['name', 'author', 'tags', 'photoURL', 'startingDate', 'completed', 'rank', 'rating', 'description'],
       key: [
         ['author'], 'rank', 'rating', 'id'
       ],
@@ -38,7 +38,7 @@ module.exports = {
       }
     },
     all_name_search: {
-      select: ['name', 'author', 'tags', 'url', 'startingDate', 'completed', 'rank', 'rating', 'description'],
+      select: ['name', 'author', 'tags', 'photoURL', 'startingDate', 'completed', 'rank', 'rating', 'description'],
       key: [
         ['id'], 'name', 'rank', 'rating'
       ],
