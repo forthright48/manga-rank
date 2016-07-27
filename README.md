@@ -24,3 +24,4 @@ Main target is to familiarize myself with express-cassandra package.
 3. Session
 4. Custom Middle ware
 5. R&D linter for other IDE
+6. Logger: winston
