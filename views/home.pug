@@ -9,18 +9,23 @@ block content
       table.u-full-width.u-text-center(align='center')
         thead
           th Rank
+          th Photo
           th Name
           th Author
           th Rating
+          th Tags
           th Description
           th Delete
         tbody
           each row in data
             tr
               td= row.rank
+              td
+                img(src=row.photoURL, height=150)
               td= row.name
               td= row.author
               td= row.rating
+              td= row.tags.join(',')
               td= row.description
               td
                 a.button(href='/edit/'+row.id) Edit

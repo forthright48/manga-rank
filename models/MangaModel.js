@@ -6,6 +6,10 @@ module.exports = {
         $db_function: 'uuid()'
       }
     },
+    dummy: {
+      type: 'text',
+      default: '1'
+    },
     name: 'text',
     author: 'text',
     tags: {
@@ -20,7 +24,7 @@ module.exports = {
     description: 'text'
   },
   key: [
-    ['id'], 'rank', 'rating'
+    ['dummy'], 'rank', 'rating', 'id'
   ],
   clustering_order: {
     rank: 'asc',
@@ -30,7 +34,7 @@ module.exports = {
     author_search: {
       select: ['name', 'author', 'tags', 'photoURL', 'startingDate', 'completed', 'rank', 'rating', 'description'],
       key: [
-        ['author'], 'rank', 'rating', 'id'
+        ['author'], 'rank', 'rating', 'id', 'dummy'
       ],
       clustering_order: {
         rank: 'asc',
@@ -40,13 +44,13 @@ module.exports = {
     all_name_search: {
       select: ['name', 'author', 'tags', 'photoURL', 'startingDate', 'completed', 'rank', 'rating', 'description'],
       key: [
-        ['id'], 'name', 'rank', 'rating'
+        ['id'], 'name', 'rank', 'rating', 'dummy'
       ],
       clustering_order: {
         name: 'asc'
       }
     }
   },
-  indexex: ['tags'],
+  indexes: ['tags', 'id'],
   table_name: 'all_ranking_search'
 };
