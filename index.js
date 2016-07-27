@@ -57,6 +57,7 @@ app.post('/insert', postInsert);
 app.get('/delete/:id', getDelete);
 app.get('/edit/:id', getEdit);
 app.post('/edit/:id', postUpdate);
+app.get('/author/:author', getAuthor);
 
 
 if (require.main === module) {
@@ -147,6 +148,20 @@ function postUpdate(req, res, next) {
     row.save(function(err) {
       if (err) return next(err);
       return res.redirect('/');
+    });
+  });
+}
+
+function getAuthor(req, res, next) {
+  const author = req.params.author;
+  models.instance.Manga.find({
+    author
+  }, {
+    materialized_view: 'author_search'
+  }, function(err, all) {
+    if (err) return next(err);
+    return res.render('home', {
+      data: all
     });
   });
 }

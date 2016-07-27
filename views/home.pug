@@ -23,9 +23,14 @@ block content
               td
                 img(src=row.photoURL, height=150)
               td= row.name
-              td= row.author
+              td
+                a(href='/author/'+row.author)= row.author
               td= row.rating
-              td= row.tags.join(',')
+              td
+                each tag, index in row.tags
+                  if index > 0
+                    span= " | "
+                  a(href='/tags/'+tag)= tag
               td= row.description
               td
                 a.button(href='/edit/'+row.id) Edit
