@@ -54,6 +54,7 @@ app.set('views', `${__dirname}/views`);
 app.get('/', home);
 app.get('/insert', getInsert);
 app.post('/insert', postInsert);
+app.get('/delete/:id', getDelete);
 
 
 if (require.main === module) {
@@ -101,5 +102,19 @@ function postInsert(req, res, next) {
   newRow.save(function(err) {
     if (err) return next(err);
     else return res.send('ok');
+  });
+}
+
+function getDelete(req, res, next) {
+  const id = models.datatypes.Uuid.fromString(req.params.id);
+
+  models.instance.Manga.findOne({
+    id: id
+  }, function(err, row) {
+    if (err) return next(err);
+    row.delete(function(err) {
+      if (err) return next(err);
+      return res.redirect('/');
+    });
   });
 }
