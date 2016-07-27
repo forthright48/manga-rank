@@ -55,6 +55,7 @@ app.get('/', home);
 app.get('/insert', getInsert);
 app.post('/insert', postInsert);
 app.get('/delete/:id', getDelete);
+app.get('/edit/:id', getEdit);
 
 
 if (require.main === module) {
@@ -117,4 +118,15 @@ function getDelete(req, res, next) {
       return res.redirect('/');
     });
   });
+}
+
+function getEdit(req, res, next) {
+  const id = models.datatypes.Uuid.fromString(req.params.id);
+
+  models.instance.Manga(findOne(id: id), function(err, row) {
+    if (err) return next(err);
+    res.render('/edit', {
+      data: row
+    });
+  })
 }
