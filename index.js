@@ -58,6 +58,7 @@ app.get('/delete/:id', getDelete);
 app.get('/edit/:id', getEdit);
 app.post('/edit/:id', postUpdate);
 app.get('/author/:author', getAuthor);
+app.get('/tags/:tag', getTag);
 
 
 if (require.main === module) {
@@ -158,6 +159,21 @@ function getAuthor(req, res, next) {
     author
   }, {
     materialized_view: 'author_search'
+  }, function(err, all) {
+    if (err) return next(err);
+    return res.render('home', {
+      data: all
+    });
+  });
+}
+
+function getTag(req, res, next) {
+  const tag = req.params.tag;
+
+  models.instance.Manga.find({
+    tags: {
+      $contains: tag
+    }
   }, function(err, all) {
     if (err) return next(err);
     return res.render('home', {
