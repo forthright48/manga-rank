@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+  .row.u-flex.u-flex-center
+    .any.items
+      form(align='center', action='/login', method='post')
+        .row
+          .any.items
+            label(for='username') Username:
+            input(id='username', name='username', type='text')
+        .row
+          .any.items
+            label(for='password') Password:
+            input(id='password', name='password', type='password')
+        .row
+          .any.items
+            input(type='submit', value='Login')

@@ -26,6 +26,7 @@ app.set('view engine', 'pug'); ///Support for handlebars rendering
 app.set('views', `${__dirname}/views`);
 
 require('./controllers/home.js').addRouter(app); ///Add routes related to homepage
+require('./controllers/user.js').addRouter(app); ///Add routes related to login
 
 
 if (require.main === module) {
