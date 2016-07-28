@@ -3,3 +3,9 @@
   .row.u-text-center
     .any.items
       h1 Manga Rank
+  .row
+    .any.items.u-text-right
+      if login
+        a(href='/logout') Log Out
+      else
+        a(href='/login') Log In
