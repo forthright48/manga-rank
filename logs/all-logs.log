@@ -1,0 +1,8 @@
+2016-07-28T12:06:58.220Z - info: [90mGET /[39m [36m304[39m [90m342ms[39m
+{"level":"info","message":"::ffff:127.0.0.1 - - [28/Jul/2016:12:19:44 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36\"\n","timestamp":"2016-07-28T12:19:44.395Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m948.528 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:21:46.813Z"}
+{"level":"info","message":"\u001b[0mGET /error \u001b[33m400 \u001b[0m101.103 ms - 1178\u001b[0m\n","timestamp":"2016-07-28T12:22:17.359Z"}
+{"level":"info","message":"\u001b[0mGET /login \u001b[36m304 \u001b[0m139.919 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:42.864Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m349.705 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:47.786Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m158.393 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:50.731Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m121.383 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:53.261Z"}
