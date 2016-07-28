@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const server = require('http').createServer(app);
+const myRender = require('forthright48/world').myRender;
 
 const rootPath = __dirname;
 
@@ -35,6 +36,19 @@ app.use('/admin', function(req, res, next) {
 require('./controllers/home.js').addRouter(app); ///Add routes related to homepage
 require('./controllers/user.js').addRouter(app); ///Add routes related to login
 
+
+/*404 and 500*/
+app.get('/*', function(req, res, next) {
+  myRender(req, res, 'error', {
+    msg: 'No such path'
+  });
+});
+
+app.use(function(err, req, res, next) {
+  myRender(req, res, 'error', {
+    msg: err
+  })
+});
 
 if (require.main === module) {
   server.listen(app.get('port'), function() {
