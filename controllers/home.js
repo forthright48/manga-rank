@@ -6,19 +6,23 @@ const models = require('express-cassandra');
 const myRender = require('forthright48/world').myRender;
 
 const router = express.Router();
+const admin = express.Router();
 
 router.get('/', home);
-router.get('/insert', getInsert);
-router.post('/insert', postInsert);
-router.get('/delete/:id', getDelete);
-router.get('/edit/:id', getEdit);
-router.post('/edit/:id', postUpdate);
+
+admin.get('/insert', getInsert);
+admin.post('/insert', postInsert);
+admin.get('/delete/:id', getDelete);
+admin.get('/edit/:id', getEdit);
+admin.post('/edit/:id', postUpdate);
+
 router.get('/author/:author', getAuthor);
 router.get('/tags/:tag', getTag);
 
 module.exports = {
   addRouter(app) {
     app.use('/', router);
+    app.use('/admin', admin);
   }
 };
 

@@ -5,6 +5,7 @@ const models = require('express-cassandra');
 const myRender = require('forthright48/world').myRender;
 
 const router = express.Router();
+const admin = express.Router();
 
 router.get('/login', getLogin);
 router.post('/login', postLogin);
@@ -13,6 +14,7 @@ router.get('/logout', getLogout);
 module.exports = {
   addRouter(app) {
     app.use('/', router);
+    app.use('/admin', admin);
   }
 };
 

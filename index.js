@@ -25,6 +25,13 @@ require('./controllers/db.js').addSession(app); ///Add session and models
 app.set('view engine', 'pug'); ///Support for handlebars rendering
 app.set('views', `${__dirname}/views`);
 
+/*Custom Middleware*/
+app.use('/admin', function(req, res, next) {
+  if (req.session.login) return next();
+  res.redirect('/login');
+})
+
+/*Router*/
 require('./controllers/home.js').addRouter(app); ///Add routes related to homepage
 require('./controllers/user.js').addRouter(app); ///Add routes related to login
 
