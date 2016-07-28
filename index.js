@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const logger = require('./logs/winston.js');
+const logger = require('forthright48/logger');
 
 const app = express();
 const server = require('http').createServer(app);

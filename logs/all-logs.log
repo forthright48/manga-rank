@@ -6,3 +6,13 @@
 {"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m349.705 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:47.786Z"}
 {"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m158.393 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:50.731Z"}
 {"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m121.383 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:22:53.261Z"}
+{"level":"info","message":"\u001b[0mGET /login \u001b[36m304 \u001b[0m231.584 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:24:50.736Z"}
+{"level":"info","message":"\u001b[0mPOST /login \u001b[36m302 \u001b[0m66.006 ms - 46\u001b[0m\n","timestamp":"2016-07-28T12:24:55.954Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[32m200 \u001b[0m219.790 ms - 4875\u001b[0m\n","timestamp":"2016-07-28T12:24:56.184Z"}
+{"level":"info","message":"\u001b[0mGET /admin/insert \u001b[32m200 \u001b[0m164.847 ms - 2747\u001b[0m\n","timestamp":"2016-07-28T12:24:57.922Z"}
+{"level":"info","message":"\u001b[0mPOST /admin/insert \u001b[36m302 \u001b[0m20.435 ms - 46\u001b[0m\n","timestamp":"2016-07-28T12:26:34.298Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[32m200 \u001b[0m156.168 ms - 5729\u001b[0m\n","timestamp":"2016-07-28T12:26:34.465Z"}
+{"level":"info","message":"\u001b[0mGET /logout \u001b[36m302 \u001b[0m20.086 ms - 46\u001b[0m\n","timestamp":"2016-07-28T12:26:39.026Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[32m200 \u001b[0m116.041 ms - 4940\u001b[0m\n","timestamp":"2016-07-28T12:26:39.150Z"}
+{"level":"info","message":"\u001b[0mGET / \u001b[36m304 \u001b[0m889.467 ms - -\u001b[0m\n","timestamp":"2016-07-28T12:28:36.513Z"}
+{"level":"info","message":"\u001b[0mGET /login \u001b[32m200 \u001b[0m121.437 ms - 1562\u001b[0m\n","timestamp":"2016-07-28T12:28:48.299Z"}
