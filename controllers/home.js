@@ -3,6 +3,8 @@
 const express = require('express');
 const models = require('express-cassandra');
 
+const myRender = require('forthright48/world').myRender;
+
 const router = express.Router();
 
 router.get('/', home);
@@ -27,14 +29,14 @@ Implementation
 function home(req, res, next) {
   models.instance.Manga.find({}, function(err, all) {
     if (err) next(err);
-    res.render('home', {
+    return myRender(req, res, 'home', {
       data: all
     });
   });
 }
 
 function getInsert(req, res) {
-  res.render('insert');
+  return myRender(req, res, 'insert');
 }
 
 function parseBodyToModel(obj, body) {
@@ -82,7 +84,7 @@ function getEdit(req, res, next) {
     },
     function(err, row) {
       if (err) return next(err);
-      res.render('edit', {
+      myRender(req, res, 'edit', {
         data: row
       });
     });
@@ -110,7 +112,7 @@ function getAuthor(req, res, next) {
     materialized_view: 'author_search'
   }, function(err, all) {
     if (err) return next(err);
-    return res.render('home', {
+    return myRender(req, res, 'home', {
       data: all
     });
   });
@@ -125,7 +127,7 @@ function getTag(req, res, next) {
     }
   }, function(err, all) {
     if (err) return next(err);
-    return res.render('home', {
+    return myRender(req, res, 'home', {
       data: all
     });
   });
