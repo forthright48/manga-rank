@@ -138,3 +138,6 @@ label > .label-body {
 .manga .row {
   margin-top: -20px;
 }
+.description {
+  font-size: 1.2rem;
+}

@@ -2,10 +2,13 @@
 const express = require('express');
 const models = require('express-cassandra');
 
+const myRender = require('forthright48/world').myRender;
+
 const router = express.Router();
 
 router.get('/login', getLogin);
 router.post('/login', postLogin);
+router.get('/logout', getLogout);
 
 module.exports = {
   addRouter(app) {
@@ -29,11 +32,11 @@ function postLogin(req, res, next) {
   }, function(err, user) {
     if (err) return next(err);
 
-    if (!user) return res.render('error', {
+    if (!user) return myRender(req, res, 'error', {
       msg: 'No such username'
     });
 
-    if (user.password !== password) return res.render('error', {
+    if (user.password !== password) myRender(req, res, 'error', {
       msg: 'Password Doesn\'t Match'
     });
 
@@ -42,4 +45,13 @@ function postLogin(req, res, next) {
 
     return res.redirect('/');
   })
+}
+
+function getLogout(req, res) {
+  req.session.destroy(function(err) {
+    if (err) return myRender(req, res, 'error', {
+      msg: 'Session destruction failed. Try again.'
+    });
+    res.redirect('/');
+  });
 }

@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  .row
-    .any.items.u-text-center
-      a.button(href="/insert") Insert
+  if (login)
+    .row
+      .any.items.u-text-center
+        a.button(href="/insert") Insert
   .row.u-flex.u-flex-center
     .any.items
       ol.manga
@@ -12,7 +13,7 @@ block content
             .row
               .two.items.imageHolde
                 img(src=row.photoURL, height=150)
-              .four.items
+              .three.items
                 div= row.name
                 div
                   i Artist: &nbsp
@@ -25,8 +26,10 @@ block content
                     a(href='/tags/'+tag)= tag
                 div
                   i Rating: #{row.rating}
-              .six.items
-                div
-                  i Description: #{row.description}
-                a.button(href='/edit/'+row.id) Edit
-                a.button(href='/delete/'+row.id) Delete
+              .seven.items
+                div.description
+                  i Description: &nbsp
+                  span= row.description
+                if login
+                  a.button(href='/edit/'+row.id) Edit
+                  a.button(href='/delete/'+row.id) Delete
