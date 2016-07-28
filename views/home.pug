@@ -4,7 +4,7 @@ block content
   if (login)
     .row
       .any.items.u-text-center
-        a.button(href="/insert") Insert
+        a.button(href="/admin/insert") Insert
   .row.u-flex.u-flex-center
     .any.items
       ol.manga
@@ -31,5 +31,5 @@ block content
                   i Description: &nbsp
                   span= row.description
                 if login
-                  a.button(href='/edit/'+row.id) Edit
-                  a.button(href='/delete/'+row.id) Delete
+                  a.button(href='/admin/edit/'+row.id) Edit
+                  a.button(href='/admin/delete/'+row.id) Delete
