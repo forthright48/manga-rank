@@ -134,3 +134,7 @@ label > .label-body {
   display: inline;
   padding-left: 1rem;
 }
+
+.manga .row {
+  margin-top: -20px;
+}

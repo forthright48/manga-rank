@@ -5,33 +5,28 @@ block content
     .any.items.u-text-center
       a.button(href="/insert") Insert
   .row.u-flex.u-flex-center
-    .any.items.u-text-center
-      table.u-full-width.u-text-center(align='center')
-        thead
-          th Rank
-          th Photo
-          th Name
-          th Author
-          th Rating
-          th Tags
-          th Description
-          th Delete
-        tbody
-          each row in data
-            tr
-              td= row.rank
-              td
+    .any.items
+      ol.manga
+        each row, ind in data
+          li.manga
+            .row
+              .two.items.imageHolde
                 img(src=row.photoURL, height=150)
-              td= row.name
-              td
-                a(href='/author/'+row.author)= row.author
-              td= row.rating
-              td
-                each tag, index in row.tags
-                  if index > 0
-                    span= " | "
-                  a(href='/tags/'+tag)= tag
-              td= row.description
-              td
+              .four.items
+                div= row.name
+                div
+                  i Artist: &nbsp
+                  a(href='/author/'+row.author)= row.author
+                div
+                  i Tags: &nbsp
+                  each tag, index in row.tags
+                    if index > 0
+                      span= " | "
+                    a(href='/tags/'+tag)= tag
+                div
+                  i Rating: #{row.rating}
+              .six.items
+                div
+                  i Description: #{row.description}
                 a.button(href='/edit/'+row.id) Edit
                 a.button(href='/delete/'+row.id) Delete
