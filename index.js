@@ -35,7 +35,7 @@ app.set('view engine', 'pug'); ///Support for handlebars rendering
 app.set('views', `${__dirname}/views`);
 
 /*Custom Middleware*/
-app.use('/admin', function(req, res, next) {
+app.use('/admin/*', function(req, res, next) {
   if (req.session.login) return next();
   res.redirect('/login');
 });

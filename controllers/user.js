@@ -46,7 +46,7 @@ function postLogin(req, res, next) {
     req.session.login = true;
 
     return res.redirect('/');
-  })
+  });
 }
 
 function getLogout(req, res) {

@@ -19,9 +19,9 @@ Main target is to familiarize myself with express-cassandra package.
 
 # Next task
 
-1. Babel
+1. Babel & Webpack
 2. ~~404 and 500 support~~
 3. ~~Session~~
 4. ~~Custom Middle ware~~
 5. R&D linter for other IDE
-6. Logger: winston
+6. ~~Logger: winston~~
