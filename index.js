@@ -40,6 +40,18 @@ app.use('/admin/*', function(req, res, next) {
   res.redirect('/login');
 });
 
+/*Connect app to webpack*/
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
+const compiler = webpack(webpackConfig);
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  noInfo: true,
+  publicPath: webpackConfig.output.publicPath
+}));
+
+app.use(require('webpack-hot-middleware')(compiler));
+
 /*Router*/
 require('./controllers/home.js').addRouter(app); ///Add routes related to homepage
 require('./controllers/user.js').addRouter(app); ///Add routes related to login
