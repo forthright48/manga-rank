@@ -6,7 +6,7 @@ const hotMiddleWare = 'webpack-hot-middleware/client';
 
 module.exports = {
   entry: {
-    layout: [hotMiddleWare, './views/layout.js']
+    layout: [hotMiddleWare, './src/js/layout.js']
   },
   output: {
     path: path.join(__dirname, '/public'),
@@ -16,12 +16,17 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
-      exclude: './node_modules/'
+      loader: ExtractTextPlugin.extract('css'),
+      include: [
+        path.join(__dirname, 'src', 'css'),
+        path.join(__dirname, 'node_modules', '@forthright48', 'simplecss')
+      ]
     }, {
       test: /\.js$/,
       loader: 'babel',
-      exclude: './node_modules/',
+      include: [
+        path.join(__dirname, 'src', 'js')
+      ],
       query: {
         presets: ['es2015']
       }

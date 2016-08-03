@@ -52,6 +52,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+
 /*Router*/
 require('./controllers/home.js').addRouter(app); ///Add routes related to homepage
 require('./controllers/user.js').addRouter(app); ///Add routes related to login
