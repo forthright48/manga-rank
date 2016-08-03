@@ -12,6 +12,22 @@ const myRender = require('forthright48/world').myRender;
 
 const rootPath = __dirname;
 
+/*Connect app to webpack*/
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
+const compiler = webpack(webpackConfig);
+
+app.use(require('webpack-dev-middleware')(compiler, {
+  publicPath: webpackConfig.output.publicPath,
+  noInfo: true
+}));
+
+app.use(require('webpack-hot-middleware')(compiler, {
+  log: console.log,
+  path: '/__webpack_hmr',
+  heartbeat: 10 * 1000
+}));
+
 /*app configuration*/
 app.set('port', process.env.PORT || 8002);
 app.use('/public', express.static(path.join(rootPath, '/public')));
@@ -39,18 +55,6 @@ app.use('/admin/*', function(req, res, next) {
   if (req.session.login) return next();
   res.redirect('/login');
 });
-
-/*Connect app to webpack*/
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
-const compiler = webpack(webpackConfig);
-
-app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfig.output.publicPath
-}));
-
-app.use(require('webpack-hot-middleware')(compiler));
 
 
 /*Router*/

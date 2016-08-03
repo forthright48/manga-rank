@@ -2,9 +2,10 @@ const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 
-const hotMiddleWare = 'webpack-hot-middleware/client';
+const hotMiddleWare = 'webpack - hot - middleware / client ? path = /__webpack_hmr&timeout=20000';
 
 module.exports = {
+  context: __dirname,
   entry: {
     layout: [hotMiddleWare, './src/js/layout.js']
   },
@@ -17,6 +18,7 @@ module.exports = {
     loaders: [{
       test: /\.css$/,
       loader: ExtractTextPlugin.extract('css'),
+      //loader: 'style!css-loader',
       include: [
         path.join(__dirname, 'src', 'css'),
         path.join(__dirname, 'node_modules', '@forthright48', 'simplecss')

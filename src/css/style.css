@@ -1,4 +1,3 @@
-
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="email"],
@@ -140,4 +139,5 @@ label > .label-body {
 }
 .description {
   font-size: 1.2rem;
+  color: red;
 }
