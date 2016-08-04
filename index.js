@@ -16,17 +16,22 @@ const rootPath = __dirname;
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
 const compiler = webpack(webpackConfig);
-
-app.use(require('webpack-dev-middleware')(compiler, {
+const WebpackDevServer = require('webpack-dev-server');
+const webpackServer = new WebpackDevServer(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  noInfo: true
-}));
-
-app.use(require('webpack-hot-middleware')(compiler, {
-  log: console.log,
-  path: '/__webpack_hmr',
-  heartbeat: 10 * 1000
-}));
+  noInfo: false,
+  //contentBase: webpackConfig.devServer.contentBase,
+  /*proxy: {
+    '*': 'http://localhost:8002'
+  },*/
+  hot: true,
+  inline: true,
+  quite: false,
+  stats: {
+    colors: true
+  }
+});
+webpackServer.listen(8080);
 
 /*app configuration*/
 app.set('port', process.env.PORT || 8002);

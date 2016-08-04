@@ -3,6 +3,7 @@ html
   head
     block head
       link(href='/public/layout.css', rel="stylesheet" type="text/css")
+
       //Raleway fonts
       link(href="https://fonts.googleapis.com/css?family=Raleway", rel="stylesheet" type="text/css")
   body
@@ -12,3 +13,5 @@ html
       block content
 
       include partials/footer.pug
+
+      script(href='/public/layout.js')
