@@ -28,6 +28,7 @@ app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
 
+/*Database*/
 require('./controllers/db.js').addSession(app); ///Add session and models
 
 /*Pug*/
