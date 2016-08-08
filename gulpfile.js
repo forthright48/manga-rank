@@ -6,23 +6,27 @@ const uglify = require('gulp-uglify');
 const pump = require('pump');
 const browsersync = require('browser-sync');
 const nodemon = require('gulp-nodemon');
+const recursive = require('gulp-recursive-concat');
 
 gulp.task('style', function() {
-  gulp.src(['./src/css/*.css', './node_modules/@forthright48/simplecss/src/*.css'])
+  return gulp.src(['./src/**/*.css', './node_modules/@forthright48/simplecss/src/*.css'])
     .pipe(cleanCSS())
     .pipe(concat('all.css'))
     .pipe(gulp.dest('./public/css'));
 });
 
 gulp.task('clean', function() {
-  del('./public');
+  return del('./public');
 });
 
 gulp.task('script', function(cb) {
   pump([
-    gulp.src('./src/js/*.js'),
+    gulp.src('./src/**/*.js'),
+    recursive({
+      extname: '.js'
+    }),
     uglify(),
-    gulp.dest('./pubic/js')
+    gulp.dest('./pubic')
   ], cb);
 });
 
@@ -34,7 +38,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('browser-sync', ['nodemon'], function() {
-  browsersync.init(null, {
+  return browsersync.init(null, {
     injectChanges: true,
     proxy: 'http://localhost:8002'
   });
