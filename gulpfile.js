@@ -7,6 +7,7 @@ const pump = require('pump');
 const browsersync = require('browser-sync');
 const nodemon = require('gulp-nodemon');
 const recursive = require('gulp-recursive-concat');
+const babel = require('gulp-babel');
 
 gulp.task('style', function() {
   return gulp.src(['./src/**/*.css', './node_modules/@forthright48/simplecss/src/*.css'])
@@ -25,8 +26,11 @@ gulp.task('script', function(cb) {
     recursive({
       extname: '.js'
     }),
+    babel({
+      presets: ['es2015']
+    }),
     uglify(),
-    gulp.dest('./pubic')
+    gulp.dest('./public')
   ], cb);
 });
 
