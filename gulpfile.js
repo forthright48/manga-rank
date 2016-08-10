@@ -27,7 +27,8 @@ gulp.task('script', function(cb) {
       extname: '.js'
     }),
     babel({
-      presets: ['es2015']
+      presets: ['es2015'],
+      plugins: ["transform-runtime"]
     }),
     uglify(),
     gulp.dest('./public')
