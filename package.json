@@ -30,13 +30,14 @@
     "babel-runtime": "^6.11.6",
     "browser-sync": "^2.14.0",
     "del": "^2.2.1",
-    "gulp": "^3.9.1",
+    "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^2.0.12",
     "gulp-concat": "^2.6.0",
     "gulp-copy": "0.0.2",
     "gulp-nodemon": "^2.1.0",
     "gulp-recursive-concat": "^0.2.0",
+    "gulp-resolve-dependencies": "^2.2.0",
     "gulp-uglify": "^2.0.0",
     "pump": "^1.0.1"
   }
