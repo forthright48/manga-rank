@@ -30,6 +30,7 @@
     "babel-runtime": "^6.11.6",
     "browser-sync": "^2.14.0",
     "del": "^2.2.1",
+    "glob-to-vinyl": "^1.0.0",
     "gulp": "github:gulpjs/gulp#4.0",
     "gulp-babel": "^6.1.2",
     "gulp-clean-css": "^2.0.12",

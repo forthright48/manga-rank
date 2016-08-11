@@ -9,10 +9,13 @@ const nodemon = require('gulp-nodemon');
 const recursive = require('gulp-recursive-concat');
 const babel = require('gulp-babel');
 const resolveDependencies = require('gulp-resolve-dependencies');
+const globToVinyl = require('glob-to-vinyl');
+const pathModule = require('path');
 
 const path = {
   dirs: {
-    public: './public'
+    public: './public',
+    temp: './temp'
   },
   pug: './views/**/*.pug',
   images: './src/**/*.{JPG,jpg,png,gif}',
@@ -43,28 +46,52 @@ gulp.task('style', function() {
 });
 
 gulp.task('clean', function(cb) {
-  return del(path.dirs.public, cb);
+  return del([path.dirs.public, path.dirs.temp], cb);
 });
 
-gulp.task('script', function(cb) {
+let dependencyCounter;
+
+function solveDependency(file, len, done) {
+  const relative = pathModule.relative(pathModule.join(__dirname, 'src'), file);
   pump([
-    gulp.src(path.js),
+    gulp.src(file),
     resolveDependencies({
-      pattern: /\* @requires [\s-]*(.*\.js)/g
-    }).on('error', function(err) {
-      console.log(err.message);
+      pattern: /\* @requires [\s-]*(.*\.js)/g,
+      log: true
     }),
-    // recursive({
-    //   extname: '.js'
-    // }),
+    concat(relative),
+    gulp.dest('./temp')
+  ], function() {
+    dependencyCounter++;
+    if (dependencyCounter === len) done();
+  });
+}
+
+gulp.task('solveDependency', function(done) {
+  dependencyCounter = 0;
+  globToVinyl(path.js, function(err, files) {
+    for (const file in files) {
+      solveDependency(files[file].path, files.length, done);
+    }
+  });
+});
+
+gulp.task('script', gulp.series('solveDependency', function(done) {
+  return pump([
+    gulp.src('./temp/**/*.js'),
+    recursive({
+      extname: '.js'
+    }),
     babel({
       presets: ['es2015'],
       plugins: ['transform-runtime']
     }),
     uglify(),
     gulp.dest('./public')
-  ], cb);
-});
+  ], function() {
+    del([path.dirs.temp], done);
+  });
+}));
 
 gulp.task('reload', function() {
   return browsersync.reload;
